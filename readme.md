@@ -34,6 +34,8 @@ public void init() {
 		}
 	}
 ```
+
+This the inputReader skeleton
 ```java
 public void inputReader() throws IOException {
 	// Keeps the file
@@ -64,6 +66,12 @@ public void inputReader() throws IOException {
 	}
 	reader.close();
 }
+```
+startOperation() method starts the movement by using rovers.
+```java
+for (MarsRover mr : rovers) {
+			mr.move();
+		}
 ```
 ### MarsRover
 
