@@ -4,19 +4,37 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class MarsRover implements RoverInterface {
+	
+	public static final char NORTH = 'N';
+	public static final char SOUTH = 'S';
+	public static final char EAST  = 'E';
+	public static final char WEST  = 'W';
+	public static final char RIGTH = 'R';
+	public static final char LEFT  = 'L';
+	public static final char MOVE  = 'M';
 
-	private int positionX;
+	/** The x position of rover */
+	private int x;
 
-	private int positionY;
+	/** The y position of rover */
+	private int y;
 
+	/** Facing direction */
 	private char direction;
 
+	/** Keeps the movements*/
 	private String moves;
 
+	/** */
 	private Plateau pl;
 
 	private static final Logger log4j = LogManager.getLogger("MarsOperation");
 
+	// Constructor
+	/**
+	 * MarsRover Constructor
+	 * @param pl The rover will explore this plateau
+	 */
 	public MarsRover(Plateau pl) {
 		this.pl = pl;
 	}
@@ -27,17 +45,18 @@ public class MarsRover implements RoverInterface {
 			Character walk = moves.charAt(index);
 
 			switch (walk) {
-			case 'L':
+			case LEFT:
 				turnLeft();
 				break;
-			case 'R':
+			case RIGTH:
 				turnRight();
 				break;
-			case 'M':
-				goAhead();
+			case MOVE:
+				moveForward(); 
 				break;
 
 			default:
+				// Invalid move
 				break;
 			}
 		}
@@ -46,39 +65,71 @@ public class MarsRover implements RoverInterface {
 
 	private void turnLeft() {
 
-		if (direction == 'N')
-			direction ='W';
-		else if (direction == 'E')
-			direction = 'N';
-		else if (direction == 'S')
-			direction = 'E';
-		else if (direction == 'W')
-			direction = 'S';
-		log4j.trace("-----Step " + positionX + " " + positionY + " " + direction);
+		switch (direction) {
+		case NORTH:
+			this.direction = WEST;
+			break;
+		case EAST:
+			this.direction = NORTH;
+			break;
+		case SOUTH:
+			this.direction = EAST;
+			break;
+		case WEST:
+			this.direction = SOUTH;
+			break;
+		}
+		log4j.trace("-----Step " + x + " " + y + " " + direction);
 
 	}
 
 	private void turnRight() {
-		if (direction == 'N')
-			direction = 'E';
-		else if (direction == 'E')
-			direction = 'S';
-		else if (direction == 'S')
-			direction = 'W';
-		else if (direction == 'W')
-			direction = 'N';
+		
+		switch (direction) {
+		case NORTH:
+			this.direction = EAST;
+			break;
+		case EAST:
+			this.direction = SOUTH;
+			break;
+		case SOUTH:
+			this.direction = WEST;
+			break;
+		case WEST:
+			this.direction = NORTH;
+			break;
+		}
 	}
 
-	private void goAhead() {
-		if (direction == 'N' && pl.getHeight() >= positionY + 1)
-			positionY= (positionY + 1);
-		else if (direction == 'E' && pl.getWidth() >= positionX + 1)
-			positionX =(positionX + 1);
-		else if (direction == 'S' && positionY - 1 >= 0)
-			positionY = (positionY - 1);
-		else if (direction == 'W' && positionX - 1 >= 0)
-			positionX = (positionX - 1);
-		log4j.trace("-----Step " + positionX + " " + positionY + " " + direction);
+	private void moveForward() {
+		
+		switch (direction) {
+		case NORTH:			
+			if ((y+1) <= pl.getHeight()) {
+				y += 1;
+			}			
+			break;
+			
+		case EAST:			
+			if ((x+1) <= pl.getWidth()) {
+				x += 1;
+			}			
+			break;
+			
+		case SOUTH:			
+			if ((y-1) >= 0) {
+				y -= 1;
+			}			
+			break;
+			
+		case WEST:			
+			if ((x-1) >= 0) {
+				x -= 1;
+			}			
+			break;
+		}
+		
+		log4j.trace("-----Step " + x + " " + y + " " + direction);
 
 	}
 
@@ -90,20 +141,20 @@ public class MarsRover implements RoverInterface {
 		this.direction = direction;
 	}
 
-	public int getPositionX() {
-		return positionX;
+	public int getX() {
+		return x;
 	}
 
-	public void setPositionX(int positionX) {
-		this.positionX = positionX;
+	public void setX(int positionX) {
+		this.x = positionX;
 	}
 
-	public int getPositionY() {
-		return positionY;
+	public int getY() {
+		return y;
 	}
 
-	public void setPositionY(int positionY) {
-		this.positionY = positionY;
+	public void setY(int positionY) {
+		this.y = positionY;
 	}
 
 	public String getMoves() {
