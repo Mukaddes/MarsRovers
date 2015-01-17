@@ -18,6 +18,54 @@ Assume that the square directly North from (x, y) is (x, y+1).
 
 ## Implemantation
 
+The Mars Operation program has two main class, MarsOperation and MarsRover.
+
+### MarsOperation
+
+This class starts the operation and ends the operation. 
+
+```java
+public void init() {
+		rovers = new ArrayList<MarsRover>();
+		try {
+			inputReader();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+```
+```java
+public void inputReader() throws IOException {
+	// Keeps the file
+	File file = new File(filename);
+ 	// keeps the number of each line from input file
+	Integer lineNumber = 1;
+	BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+
+	while ((line = reader.readLine()) != null && !line.equals("")) {
+
+
+		// Get plateau info from first line
+		if (lineNumber == 1) {
+    ...
+		} 
+		// Even lines gives the rovers coordinate and direction info
+		else if (lineNumber % 2 == 0) {				
+		...
+		} 
+		// Odd lines gives the moves of the rovers 
+		else {
+    ...
+		}
+		if (lineNumber > 1 && lineNumber % 2 == 1) {
+			rovers.add(mr); // add the rover in rovers list
+		}
+		lineNumber++;
+	}
+	reader.close();
+}
+```
+### MarsRover
 
 ## Test
 
