@@ -12,6 +12,11 @@ import java.util.StringTokenizer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * 
+ * @author Mukaddes Büyükkavut Ertaşs
+ *
+ */
 public class MarsOperation {
 	
 	/***** BEGIN ****/
