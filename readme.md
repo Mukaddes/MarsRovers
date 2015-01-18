@@ -100,5 +100,8 @@ switch (walk) {
 ```
 Results of the task printed on console using log4j console appander
 
+## Missing Features
+* spring framework but Spring Tool Suite is used
+* Unit, Integrity and Functional test
 ## Test
 
