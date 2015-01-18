@@ -98,7 +98,7 @@ switch (walk) {
 		}
 	}
 ```
-
+Results of the task printed on console using log4j console appander
 
 ## Test
 
