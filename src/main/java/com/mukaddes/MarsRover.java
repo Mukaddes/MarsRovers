@@ -3,6 +3,11 @@ package com.mukaddes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * This class represents a Nasa robotic rover with position, direction and movements info.
+ * @author Mukaddes
+ *
+ */
 public class MarsRover implements RoverInterface {
 	
 	public static final char NORTH = 'N';
@@ -22,7 +27,7 @@ public class MarsRover implements RoverInterface {
 	/** Facing direction */
 	private char direction;
 
-	/** Keeps the movements*/
+	/** Movements to do*/
 	private String moves;
 
 	/** */
@@ -30,7 +35,6 @@ public class MarsRover implements RoverInterface {
 
 	private static final Logger log4j = LogManager.getLogger("MarsOperation");
 
-	// Constructor
 	/**
 	 * MarsRover Constructor
 	 * @param pl The rover will explore this plateau
@@ -38,7 +42,11 @@ public class MarsRover implements RoverInterface {
 	public MarsRover(Plateau pl) {
 		this.pl = pl;
 	}
-
+	
+	/**
+	 * Executes specified moves of the rover.
+	 * Rover can turn right, turn left and move forward.
+	 */
 	@Override
 	public void move() {
 		for (int index = 0; index < moves.length(); index++) {

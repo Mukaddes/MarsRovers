@@ -15,30 +15,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * 
+ * This class simulates a Nasa operation on a plateau on Mars with robotic rovers.
  * @author Mukaddes Büyükkavut Ertaş
  *
  */
 public class MarsOperation {
-	
-	/***** BEGIN ****/
+
 	// Data Fields
 	
-	/** Keep the MarsRovers*/
 	private List<MarsRover> rovers;
 
-	/** The input file name */
 	private String filename = "input.txt";
 	
-	/** Keep the plateau */
 	private Plateau pl;
 
-	/**Logger*/
-	private static final Logger log4j = LogManager
-			.getLogger("MarsOperation");
+	private static final Logger log4j = LogManager.getLogger("MarsOperation");
 
 	/**
-	 * Initializing the required variables
+	 * Initialising the required variables and gets inputs for operation.
 	 */
 	public void init() {
 		rovers = new ArrayList<MarsRover>();
@@ -46,10 +40,11 @@ public class MarsOperation {
 		try {
 			inputReader();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log4j.error(e.getLocalizedMessage());
 		}
 
 	}
+	
 	/**
 	 * Starts the Mars Operation
 	 */
@@ -62,20 +57,17 @@ public class MarsOperation {
 	/**
 	 * Reads the input file and fills the plateau list
 	 * 
-	 * @throws IOException
-	 *             if an I/O error occurs
-	 * */
+	 * @throws IOException if an I/O error occurs
+	 *
+	 */
 	public void inputReader() throws IOException {
-		// Keeps the file
+
 		File file = new File(filename);
 
 		if (!file.exists()) {
 			log4j.error("File not exist!");
 		}
 		
-		//--- Local Variables ---
-		
-		//
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 		
 		// keeps the number of each line from input file
@@ -101,7 +93,7 @@ public class MarsOperation {
 				}
 
 			} 
-			// Even lines gives the rovers coordinate and direction info
+			// Even lines gives the rover coordinate and direction info
 			else if (lineNumber % 2 == 0) {				
 				mr = new MarsRover(pl);
 				while (st.hasMoreTokens()) {
@@ -115,14 +107,14 @@ public class MarsOperation {
 
 				}
 			} 
-			// Odd lines gives the moves of the rovers 
+			// Odd lines gives the moves of the rover
 			else {
 				mr.setMoves(line);
 				log4j.info("The moves of rover " + mr.getMoves());
 			}
 			
 			if (lineNumber > 1 && lineNumber % 2 == 1) {
-				rovers.add(mr); // add the rover in rovers list
+				rovers.add(mr); // add the rover in rover list
 			}
 
 			lineNumber++;
@@ -157,10 +149,8 @@ public class MarsOperation {
 			bWriter.flush();
 			bWriter.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log4j.error(e.getLocalizedMessage());
 		}
 
 	}
-
-	/**** END ****/
 }
