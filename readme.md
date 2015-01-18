@@ -18,7 +18,7 @@ Assume that the square directly North from (x, y) is (x, y+1).
 
 ## Implemantation
 
-The Mars Operation program has two main class, MarsOperation and MarsRover. The general flow of the program is as shown below.
+The Mars Operation program has two main class, ***MarsOperation*** and ***MarsRover***. The general flow of the program is as shown below.
 
 ### MarsOperation
 
@@ -35,7 +35,7 @@ public void init() {
 		}
 	}
 ```
-The inputReader() method reads the "input.txt" line by line, and fills this information in rovers array ."input.txt" file should be in main directory.The inputReader() skeleton is as shown below.
+The ***inputReader()*** method reads the ***"input.txt"*** line by line, and fills this information in rovers array .***"input.txt"*** file should be in main directory.The ***inputReader()*** skeleton is as shown below.
 ```java
 public void inputReader() throws IOException {
 	// Keeps the file
@@ -67,17 +67,17 @@ public void inputReader() throws IOException {
 	reader.close();
 }
 ```
-startOperation() method gives the order to move by using rovers.
+***startOperation()*** method gives the order to move by using rovers.
 ```java
 for (MarsRover mr : rovers) {
 			mr.move();
 		}
 ```
-Finally outputOperation() writes the results an "output.txt" file which is written in the desired format. It also prints the results on console.
+Finally ***outputOperation()*** writes the results an "output.txt" file which is written in the desired format. It also prints the results on console.
 
 ### MarsRover
 
-MarsRover describes a rover. A rover should have its coordination on plateau, facing directory, movements and should recognize the plateau to explore.This class responsibles for checking its own movement.
+***MarsRover*** describes a rover. A rover should have its coordination on plateau, facing directory, movements and should recognize the plateau to explore.This class responsibles for checking its own movement.
 There are three commands which provides the movements, turn left , turn right and move forward.I want to talk about how this class ensure the move.
 
 ```java
@@ -98,10 +98,10 @@ switch (walk) {
 		}
 	}
 ```
-Results of the task printed on console using log4j console appander
+Results of the task printed on console using ***log4j*** console appander
 
 ## Missing Features
-* spring framework but Spring Tool Suite is used
+* spring framework but ***Spring Tool Suite*** is used
 * Unit, Integrity and Functional test
 
 
