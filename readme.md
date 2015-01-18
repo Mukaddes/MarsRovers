@@ -18,11 +18,12 @@ Assume that the square directly North from (x, y) is (x, y+1).
 
 ## Implemantation
 
-The Mars Operation program has two main class, MarsOperation and MarsRover.
+The Mars Operation program has two main class, MarsOperation and MarsRover. The general flow of the program is as shown below.
 
 ### MarsOperation
 
-This class starts the operation and ends the operation. 
+Basic operation is performed in the class.  It starts the operation and ends the operation. 
+Firstly it initializes the instant variable rovers and also fills it indirectly. 
 
 ```java
 public void init() {
@@ -34,18 +35,17 @@ public void init() {
 		}
 	}
 ```
-
-This the inputReader skeleton
+The inputReader() method reads the "input.txt" line by line, and fills this information in rovers array ."input.txt" file should be in main directory.The inputReader() skeleton is as shown below.
 ```java
 public void inputReader() throws IOException {
 	// Keeps the file
 	File file = new File(filename);
- 	// keeps the number of each line from input file
+ 	// Keeps the number of each line from input file
 	Integer lineNumber = 1;
 	BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-
+	
+	// Reads the input file line by line
 	while ((line = reader.readLine()) != null && !line.equals("")) {
-
 
 		// Get plateau info from first line
 		if (lineNumber == 1) {
@@ -67,13 +67,38 @@ public void inputReader() throws IOException {
 	reader.close();
 }
 ```
-startOperation() method starts the movement by using rovers.
+startOperation() method gives the order to move by using rovers.
 ```java
 for (MarsRover mr : rovers) {
 			mr.move();
 		}
 ```
+Finally outputOperation() writes the results an "output.txt" file which is written in the desired format. It also prints the results on console.
+
 ### MarsRover
+
+MarsRover describes a rover. A rover should have its coordination on plateau, facing directory, movements and should recognize the plateau to explore.This class responsibles for checking its own movement.
+There are three commands which provides the movements, turn left , turn right and move forward.I want to talk about how this class ensure the move.
+
+```java
+switch (walk) {
+		case LEFT:
+			turnLeft();
+			break;
+		case RIGTH:
+			turnRight();
+			break;
+		case MOVE:
+			moveForward(); 
+			break;
+
+		default:
+			// Invalid move
+			break;
+		}
+	}
+```
+
 
 ## Test
 
